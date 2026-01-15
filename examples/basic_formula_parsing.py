@@ -30,6 +30,7 @@ def main():
         ("p ∨ q", Disjunction(p, q)),
         ("p → q", Implication(p, q)),
         ("p ↔ q", Biconditional(p, q)),
+        ("p ∧ q ∨ q", Disjunction(Conjunction(p, q), q)),
     ]
 
     passed = 0

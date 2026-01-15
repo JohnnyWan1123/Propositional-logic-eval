@@ -1,5 +1,5 @@
 from itertools import product
-from evaluation_function.propositional_logic import (
+from evaluation_function.domain import (
     Atom,
     Negation,
     Conjunction,

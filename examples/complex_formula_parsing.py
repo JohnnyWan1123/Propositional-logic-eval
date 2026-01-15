@@ -1,6 +1,6 @@
 from evaluation_function.evaluation import parse_response
 
-from evaluation_function.propositional_logic import (
+from evaluation_function.domain import (
     Atom,
     Truth,
     Falsity,
