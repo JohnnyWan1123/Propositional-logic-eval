@@ -9,7 +9,7 @@ from .formula import (
     Implication,
     Biconditional,
 )
-from .evaluator import (
+from .evaluators import (
     Assignment,
     FormulaEvaluator,
     EquivalenceEvaluator,

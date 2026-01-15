@@ -1,7 +1,7 @@
 from typing import Any
 from lf_toolkit.evaluation import Result, Params
 
-from evaluation_function.propositional_logic.formula import *
+from evaluation_function.domain.formula import *
 
 
 def parse_response(response: str) -> tuple[bool, Formula | str]:
