@@ -1,9 +1,10 @@
 from typing import Any
 from lf_toolkit.evaluation import Result, Params
 
+from evaluation_function.domain.evaluators import *
 from evaluation_function.domain.formula import *
-from parsing.tokenizer import *
-from parsing.tree_builder import *
+from evaluation_function.parsing.tokenizer import *
+from evaluation_function.parsing.tree_builder import *
 
 
 # def parse_response(response: str) -> tuple[bool, Formula | str]:
@@ -138,7 +139,7 @@ def evaluation_function(
     if not isinstance(response, str):
         return Result(
             is_correct=False,
-            feedback="Please enter a string/text."
+            feedback_items=[("incorrect input", "resposne must be type String")]
         )
 
     
@@ -163,7 +164,7 @@ def evaluation_function(
     except ValueError as e:
         return Result(
             is_correct=False,
-            feedback=str(e)
+            feedback_items=[(ValueError, str(e))]
         )
 
 
@@ -175,7 +176,7 @@ def evaluation_function(
     except BuildError as e:
         return Result(
             is_correct=False,
-            feedback=str(e)
+            feedback_items=[(BuildError, str(e))]
         )
 
     #swtich on action

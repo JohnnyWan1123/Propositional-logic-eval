@@ -21,10 +21,43 @@ class TestEvaluationFunction(unittest.TestCase):
     as it should.
     """
 
-    def test_evaluation(self):
+    def test_evaluation_default(self):
         response, answer, params = "Hello, World", "Hello, World", Params()
 
         result = evaluation_function(response, answer, params).to_dict()
 
-        self.assertEqual(result.get("is_correct"), True)
-        self.assertFalse(result.get("feedback", False))
+        self.assertEqual(result.get("is_correct"), False)
+        self.assertFalse(len(result.get("feedback", [])) == 0)
+
+    def test_check_tautology(self):
+        
+        response, answer, params = "p ∨ ¬p", "", {"action": "tautology"}
+
+        result = evaluation_function(response, answer, params).to_dict()
+
+        self.assertTrue(result.get("is_correct"))
+
+    def test_check_tautology_fail(self):
+        
+        response, answer, params = "p ∧ ¬p", "", {"action": "tautology"}
+
+        result = evaluation_function(response, answer, params).to_dict()
+
+        self.assertFalse(result.get("is_correct"))
+
+    
+    def test_check_satisfiability(self):
+        
+        response, answer, params = "p ∧ q", "", {"action": "satisfiability"}
+
+        result = evaluation_function(response, answer, params).to_dict()
+
+        self.assertTrue(result.get("is_correct"))
+    
+    def test_check_satisfiability_fail(self):
+        
+        response, answer, params = "p ∧ ¬p", "", {"action": "satisfiability"}
+
+        result = evaluation_function(response, answer, params).to_dict()
+
+        self.assertFalse(result.get("is_correct"))
