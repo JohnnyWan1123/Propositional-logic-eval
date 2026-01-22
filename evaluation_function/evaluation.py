@@ -43,7 +43,7 @@ def evaluation_function(
     if not isinstance(response, str):
         return Result(
             is_correct=False,
-            feedback_items=[("incorrect input", "resposne must be type String")]
+            feedback_items=[("incorrect input", "response must be type String")]
         )
 
     
